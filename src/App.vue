@@ -1,5 +1,7 @@
 <template>
-  <app-form></app-form>
+  <div>
+    <app-form></app-form>
+  </div>  
 </template>
 
 <script>

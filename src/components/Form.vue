@@ -1,23 +1,26 @@
 <template>
   <div class="wrapper">
-    <base-input></base-input>
+    <base-input 
+     v-for="(input, index) in inputs"
+     :key="index"
+     :name="input.name"
+     :pattern="input.pattern">
+    </base-input>
+    <button>Submit</button>
   </div>
 </template>
 
 <script>
 import BaseInput from './Input.vue';
-// import { mapGetters } from 'vuex' 
+import { mapGetters } from 'vuex' 
 
 export default {
   name: 'AppForm',
   components: {
     BaseInput,
   },
-  props: {
-    msg: String
-  },
   computed: {
-    // ...mapGetters(['test'])
+    ...mapGetters(['inputs'])
   }  
 }
 </script>

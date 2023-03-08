@@ -8,37 +8,41 @@ Vue.use(Vuex);
 
 // создаем хранилище 
 
-export const store = Vuex.Store({
+export const store = new Vuex.Store({
     state: {
         info: [{
                 name: 'Name',
-                value: '',
-                // pattern: /^[a-zA-Z_$]{2,30}$/,
+                pattern: /^[a-zA-Z_$]{2,30}$/,
             },
             {
                 name: 'Phone',
-                value: '',
-                // pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+                pattern: /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/,
             },
             {
                 name: 'Email',
-                value: '',
-                // pattern: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+                pattern: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,
             },
             {
                 name: 'Age',
-                value: '',
-                //  pattern: /^[2-9]|\d{1,}$/,
+                pattern: /^[2-9]|\d{1,}$/,
             }
         ],
+        correctInputs: 0
     },
     getters: {
-        test() {
-            return 0
+        inputs(state) {
+            return state.info
         }
     },
     mutations: {
-
+        incrementInputs(state) {
+            state.correctInputs++
+        },
+        decrementInputs(state) {
+            if (state.correctInputs > 0) {
+                state.correctInputs--
+            }
+        }
     },
     actions: {
 
