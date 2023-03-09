@@ -1,31 +1,36 @@
 <template>
   <div class="wrapper">
-    <base-input
-    v-for="(item, index) in inputs"
-    :key="index"
-    :name="item.name"
-    :value="item.value"
-    :pattern="item.pattern">
+    <base-input 
+     v-for="(input, index) in inputs"
+     :key="index"
+     :name="input.name"
+     :pattern="input.pattern">
     </base-input>
+    <button
+    :disabled="!submitEnable"
+    @click="submit"
+    >Submit
+    </button>
   </div>
 </template>
 
 <script>
 import BaseInput from './Input.vue';
+import { mapGetters } from 'vuex' 
 
 export default {
   name: 'AppForm',
   components: {
     BaseInput,
   },
-  props: {
-    msg: String
-  },
+  inject: ['submit'],
+  // props: ['submit'],
   computed: {
-    inputs() {
-      return this.$store.state.info
-    }
-  }  
+    ...mapGetters(['inputs', 'submitEnable'])
+  },
+  methods: {
+    
+  }
 }
 </script>
 

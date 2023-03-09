@@ -12,30 +12,39 @@ export const store = new Vuex.Store({
     state: {
         info: [{
                 name: 'Name',
-                // value: '',
                 pattern: /^[a-zA-Z_$]{2,30}$/,
+                valid: false
             },
             {
                 name: 'Phone',
-                // value: '',
-                pattern: /^((8|\+7)[ ]?)?(\(?\d{3}\)?[ ]?)?[\d\- ]{7,10}$/,
+                pattern: /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}$/,
+                valid: false
             },
             {
                 name: 'Email',
-                value: '',
-                // pattern: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+                pattern: /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/,
+                valid: false
             },
             {
                 name: 'Age',
-                // value: '',
                 pattern: /^[2-9]|\d{1,}$/,
+                valid: false
             }
-        ]
+        ],
     },
     getters: {
+        inputs(state) {
+            return state.info
+        },
+        submitEnable(state) {
+            return state.info.every(item => item.valid)
+        }
     },
     mutations: {
-
+        setValid(state, {field, isValid}) {
+            const find = state.info.find(item => item.name === field)
+            find.valid = isValid
+        }
     },
     actions: {
 
