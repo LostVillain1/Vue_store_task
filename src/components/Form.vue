@@ -1,12 +1,17 @@
 <template>
   <div class="wrapper">
-    <base-input></base-input>
+    <base-input
+    v-for="(item, index) in inputs"
+    :key="index"
+    :name="item.name"
+    :value="item.value"
+    :pattern="item.pattern">
+    </base-input>
   </div>
 </template>
 
 <script>
 import BaseInput from './Input.vue';
-// import { mapGetters } from 'vuex' 
 
 export default {
   name: 'AppForm',
@@ -17,7 +22,9 @@ export default {
     msg: String
   },
   computed: {
-    // ...mapGetters(['test'])
+    inputs() {
+      return this.$store.state.info
+    }
   }  
 }
 </script>

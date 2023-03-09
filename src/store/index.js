@@ -8,17 +8,17 @@ Vue.use(Vuex);
 
 // создаем хранилище 
 
-export const store = Vuex.Store({
+export const store = new Vuex.Store({
     state: {
         info: [{
                 name: 'Name',
-                value: '',
-                // pattern: /^[a-zA-Z_$]{2,30}$/,
+                // value: '',
+                pattern: /^[a-zA-Z_$]{2,30}$/,
             },
             {
                 name: 'Phone',
-                value: '',
-                // pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+                // value: '',
+                pattern: /^((8|\+7)[ ]?)?(\(?\d{3}\)?[ ]?)?[\d\- ]{7,10}$/,
             },
             {
                 name: 'Email',
@@ -27,15 +27,12 @@ export const store = Vuex.Store({
             },
             {
                 name: 'Age',
-                value: '',
-                //  pattern: /^[2-9]|\d{1,}$/,
+                // value: '',
+                pattern: /^[2-9]|\d{1,}$/,
             }
-        ],
+        ]
     },
     getters: {
-        test() {
-            return 0
-        }
     },
     mutations: {
 
